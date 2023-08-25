@@ -2,6 +2,7 @@ const btnStart = document.querySelector('[data-start]');
 const btnStop = document.querySelector('[data-stop]');
 const bodyStyle = document.querySelector('body');
 
+btnStop.disabled = true;
 btnStart.addEventListener('click', changeColor);
 
 function changeColor() {
@@ -11,7 +12,8 @@ function changeColor() {
       .padStart(6, 0)}`;
   }
   const id = setInterval(() => {
-    btnStart.disabled = true
+    btnStart.disabled = true;
+    btnStop.disabled = false;
     console.log(bodyStyle.style.backgroundColor = getRandomHexColor());;
   }, 1000);
 
@@ -20,5 +22,6 @@ function changeColor() {
   function stopChangeColor(){
     clearInterval(id);
     btnStart.disabled = false;
+    btnStop.disabled = true;
   }
 }
