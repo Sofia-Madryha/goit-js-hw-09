@@ -1,20 +1,18 @@
 import Notiflix from 'notiflix';
 
 const form = document.querySelector('form');
-const btnSubmit = document.querySelector('button');
 
-btnSubmit.addEventListener('sumbit', onSubmit);
+
+form.addEventListener('submit', onSubmit);
 
 function onSubmit(evt) {
   evt.preventDefault();
 
-  const delay = Number(form.elements.delay.value);
-  const step = Number(form.elements.step.value);
-  const amount = Number(form.elements.amount.value);
+  const delay = Number(evt.currentTarget.elements.delay.value);
+  const step = Number(evt.currentTarget.elements.step.value);
+  const amount = Number(evt.currentTarget.elements.amount.value);
 
-
-
-  for (let i = 0; i < amount; i++) {
+for (let i = 1; i <= amount; i++) {
     createPromise(i, delay);
     delay += step;
   }
@@ -31,7 +29,6 @@ function createPromise(position, delay) {
       }
     }, delay);
   });
-
 promise
   .then(({ position, delay }) => {
     Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
